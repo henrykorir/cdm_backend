@@ -1,11 +1,10 @@
---Ampath Database 
 select 
 	location.name as 'Location',
-	temp.NH as 'New Hypertensive',
-	temp.KH as 'Known Hypertensive',
-	temp.ND as 'New Diabetic',
-	temp.KD as 'Known Diabetic',
-	temp.HD as 'Hypertensive and Diabetic'
+	table_a.NH as 'New Hypertensive',
+	table_a.KH as 'Known Hypertensive',
+	table_a.ND as 'New Diabetic',
+	table_a.KD as 'Known Diabetic',
+	table_a.HD as 'Hypertensive and Diabetic'
 from(
 		select
 				flat_cdm_summary.location_id as 'location_id',
@@ -27,5 +26,5 @@ from(
 				) as 'HD'
 		from flat_cdm_summary
 		group by flat_cdm_summary.location_id
-)temp
-inner join location on location.id = temp.location_id;
+)table_a
+inner join location on location.id = table_a.location_id;
