@@ -45,7 +45,7 @@ const newHypetensiveController = ( req, res ) => {
 
 const knownHypetensiveController = ( req, res ) => {
 	
-	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+	connection.query(patients_per_known_hypertensive_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
 			status: 200,
@@ -56,7 +56,7 @@ const knownHypetensiveController = ( req, res ) => {
 }
 const newDiabeticController = ( req, res ) => {
 	
-	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+	connection.query(patients_per_new_diabetic_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
 			status: 200,
@@ -66,7 +66,7 @@ const newDiabeticController = ( req, res ) => {
 	})
 }
 const knownDiabeticController = ( req, res ) => {
-	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+	connection.query(patients_per_known_diabetic_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
 			status: 200,
@@ -77,7 +77,7 @@ const knownDiabeticController = ( req, res ) => {
 }
 const hypertensiveDiabeticController = ( req, res ) => {
 	
-	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+	connection.query(patients_per_hypetensive_and_diabetic_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
 			status: 200,
