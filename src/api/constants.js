@@ -93,7 +93,7 @@ const patients_per_new_diabetic_status = `
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
 	inner join location on location.id = flat_cdm_summary.location_id
-	where htn_status = 7281 && location.name = ?;
+	where dm_status = 7281 && location.name = ?;
 `
 const patients_per_known_diabetic_status = `
 	select 
@@ -106,9 +106,9 @@ const patients_per_known_diabetic_status = `
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
 	inner join location on location.id = flat_cdm_summary.location_id
-	where htn_status = 7282 && location.name = ?;
+	where dm_status = 7282 && location.name = ?;
 `
-const patients_per_hypetensive_and_diabetic_status = `
+const patients_per_hypertensive_and_diabetic_status = `
 	select 
 		patient.name, 
 		date(flat_cdm_summary.encounter_datetime) as 'encounter_date', 
@@ -134,5 +134,5 @@ export{
 	patients_per_known_hypertensive_status,
 	patients_per_new_diabetic_status,
 	patients_per_known_diabetic_status,
-	patients_per_hypetensive_and_diabetic_status
+	patients_per_hypertensive_and_diabetic_status
 }

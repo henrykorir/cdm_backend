@@ -6,7 +6,7 @@ import {
 	patients_per_known_hypertensive_status,
 	patients_per_new_diabetic_status,
 	patients_per_known_diabetic_status,
-	patients_per_hypetensive_and_diabetic_status 
+	patients_per_hypertensive_and_diabetic_status 
 } from '../api/constants'
 
 const categoriesReportController = (req, res) =>{
@@ -31,7 +31,7 @@ const patientsRecordController = (req, res) =>{
 	})
 }
 
-const newHypetensiveController = ( req, res ) => {
+const newHypertensiveController = ( req, res ) => {
 	console.log(req.query)
 	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
@@ -43,7 +43,7 @@ const newHypetensiveController = ( req, res ) => {
 	})
 }
 
-const knownHypetensiveController = ( req, res ) => {
+const knownHypertensiveController = ( req, res ) => {
 	
 	connection.query(patients_per_known_hypertensive_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
@@ -77,7 +77,7 @@ const knownDiabeticController = ( req, res ) => {
 }
 const hypertensiveDiabeticController = ( req, res ) => {
 	
-	connection.query(patients_per_hypetensive_and_diabetic_status,[req.query.location],  (err, rows, fields) => {
+	connection.query(patients_per_hypertensive_and_diabetic_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
 			status: 200,
@@ -89,8 +89,8 @@ const hypertensiveDiabeticController = ( req, res ) => {
 export{ 
 	categoriesReportController, 
 	patientsRecordController,
-	newHypetensiveController,
-	knownHypetensiveController,
+	newHypertensiveController,
+	knownHypertensiveController,
 	newDiabeticController,
 	knownDiabeticController,
 	hypertensiveDiabeticController
