@@ -10,10 +10,10 @@ var _mysql = _interopRequireDefault(require("mysql"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var connection = _mysql["default"].createConnection({
-  host: '142.93.103.37',
-  user: 'test_user',
-  password: 'Eek6FEuxS7Y8IGlV@2021',
-  database: 'testDB'
+  host: env.DB_HOST,
+  user: env.DB_USER,
+  password: env.DB_PASSWORD,
+  database: env.DB_NAME
 });
 
 var _default = connection;
