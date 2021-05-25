@@ -32,7 +32,8 @@ const patientsRecordController = (req, res) =>{
 }
 
 const newHypetensiveController = ( req, res ) => {
-	connection.query(patients_per_new_hypertensive_status,[r],  (err, rows, fields) => {
+	console.log(req.query)
+	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
 			status: 200,
@@ -41,4 +42,56 @@ const newHypetensiveController = ( req, res ) => {
 		})
 	})
 }
-export{ categoriesReportController, patientsRecordController }
+
+const knownHypetensiveController = ( req, res ) => {
+	
+	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+		if (err) throw err
+		res.json({
+			status: 200,
+			rows,
+			message: "User lists retrieved successfully"
+		})
+	})
+}
+const newDiabeticController = ( req, res ) => {
+	
+	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+		if (err) throw err
+		res.json({
+			status: 200,
+			rows,
+			message: "User lists retrieved successfully"
+		})
+	})
+}
+const knownDiabeticController = ( req, res ) => {
+	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+		if (err) throw err
+		res.json({
+			status: 200,
+			rows,
+			message: "User lists retrieved successfully"
+		})
+	})
+}
+const hypertensiveDiabeticController = ( req, res ) => {
+	
+	connection.query(patients_per_new_hypertensive_status,[req.query.location],  (err, rows, fields) => {
+		if (err) throw err
+		res.json({
+			status: 200,
+			rows,
+			message: "User lists retrieved successfully"
+		})
+	})
+}
+export{ 
+	categoriesReportController, 
+	patientsRecordController,
+	newHypetensiveController,
+	knownHypetensiveController,
+	newDiabeticController,
+	knownDiabeticController,
+	hypertensiveDiabeticController
+}
