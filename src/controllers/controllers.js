@@ -1,0 +1,2 @@
+const indexController = (request, result) =>{
+}
