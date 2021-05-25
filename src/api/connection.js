@@ -5,6 +5,6 @@ const connection = mysql.createConnection({
   user: 'test_user',
   password: 'Eek6FEuxS7Y8IGlV@2021',
   database: 'testDB'
-}
+})
 
 export default connection
