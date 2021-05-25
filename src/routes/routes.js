@@ -1,9 +1,9 @@
 import express from 'express' 
 
-import indexController from '../controllers/controllers'
+import categoriesReportController from '../controllers/controllers'
 
 const router = express.Router()
 
-router.get('/', indexController)
+router.get('/', categoriesReportController)
 
 export default router

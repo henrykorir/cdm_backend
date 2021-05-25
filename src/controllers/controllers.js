@@ -1,7 +1,7 @@
 import connection from '../api/connection'
 import cdm_categories_report from '../api/constants'
 
-const indexController = (req, res) =>{
+const categoriesReportController = (req, res) =>{
 	connection.query(cdm_categories_report,  (err, rows, fields) => {
 		if (err) throw err
 		res.json({
@@ -10,6 +10,6 @@ const indexController = (req, res) =>{
 			message: "User lists retrieved successfully"
 		})
 	})
-	connection.end()
+	//connection.end()
 }
-export default indexController
+export default categoriesReportController
