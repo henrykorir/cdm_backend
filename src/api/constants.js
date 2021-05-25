@@ -55,4 +55,25 @@ const cdm_categories_report = `select
 						from flat_cdm_summary 
 						inner join location on location.id = flat_cdm_summary.location_id
 						group by flat_cdm_summary.location_id;`
+const patients_record_report = `
+	select 
+		patient.name as 'PatientName', 
+		date(flat_cdm_summary.encounter_datetime) as 'Encounter Date', 
+		location.name as 'Location',
+		case
+			when flat_cdm_summary.htn_status = 7285 then "New"
+			when flat_cdm_summary.htn_status = 7286 then "Known"
+			else NULL
+		end as 'Hypertension Status',
+		case
+			when flat_cdm_summary.dm_status = 7281 then "New"
+			when flat_cdm_summary.dm_status = 7282 then "Known"
+			else NULL
+		end as 'Diabetes Status',
+		if(patient.gender ="MALE","M","F") as 'Gender', 
+		timestampdiff(year,patient.dob, curdate()) AS Age
+	from patient 
+	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
+	inner join location on location.id = flat_cdm_summary.location_id;
+`
 export default cdm_categories_report
