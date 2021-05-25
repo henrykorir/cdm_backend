@@ -1,8 +1,9 @@
 import express from 'express' 
 
+import indexController from '../controllers/controllers'
+
 const router = express.Router()
 
-router.get('/', ( req, res ) => res.send('index page'))
-
+router.get('/', indexController)
 
 export default router
