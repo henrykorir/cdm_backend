@@ -59,10 +59,12 @@ const patients_record_report = `
 const patients_per_new_hypertensive_status = `
 	select 
 		patient.name, 
-		date(flat_cdm_summary.encounter_datetime) as 'encounter_date', 
-		location.name,
-		flat_cdm_summary.htn_status,
-		patient.gender,
+		date(flat_cdm_summary.encounter_datetime) as 'Encounter Date', 
+		location.name as 'Location',
+		case
+			when flat_cdm_summary.htn_status = 7285 then 'New'
+		end as 'New Hypertensive',
+		if(patient.gender ="MALE","M","F") as 'Gender',
 		timestampdiff(year,patient.dob, curdate()) AS Age
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
@@ -72,10 +74,12 @@ const patients_per_new_hypertensive_status = `
 const patients_per_known_hypertensive_status = `
 	select 
 		patient.name, 
-		date(flat_cdm_summary.encounter_datetime) as 'encounter_date', 
-		location.name,
-		flat_cdm_summary.htn_status,
-		patient.gender,
+		date(flat_cdm_summary.encounter_datetime) as 'Encounter Date', 
+		location.name as 'Location',
+		case
+			when flat_cdm_summary.htn_status = 7286 then 'Known'
+		end as 'Known Hypertensive',
+		if(patient.gender ="MALE","M","F") as 'Gender',
 		timestampdiff(year,patient.dob, curdate()) AS Age
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
@@ -85,10 +89,12 @@ const patients_per_known_hypertensive_status = `
 const patients_per_new_diabetic_status = `
 	select 
 		patient.name, 
-		date(flat_cdm_summary.encounter_datetime) as 'encounter_date', 
-		location.name,
-		flat_cdm_summary.dm_status,
-		patient.gender,
+		date(flat_cdm_summary.encounter_datetime) as 'Encounter Date', 
+		location.name as 'Location',
+		case
+			when flat_cdm_summary.dm_status = 7281 then 'New'
+		end as 'New Diabetic',
+		if(patient.gender ="MALE","M","F") as 'Gender',
 		timestampdiff(year,patient.dob, curdate()) AS Age
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
@@ -98,10 +104,12 @@ const patients_per_new_diabetic_status = `
 const patients_per_known_diabetic_status = `
 	select 
 		patient.name, 
-		date(flat_cdm_summary.encounter_datetime) as 'encounter_date', 
-		location.name,
-		flat_cdm_summary.dm_status,
-		patient.gender,
+		date(flat_cdm_summary.encounter_datetime) as 'Encounter Date', 
+		location.name as 'Location',
+		case
+			when flat_cdm_summary.dm_status = 7282 then 'New'
+		end as 'Known Diabetic',
+		if(patient.gender ="MALE","M","F") as 'Gender',
 		timestampdiff(year,patient.dob, curdate()) AS Age
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
@@ -111,11 +119,21 @@ const patients_per_known_diabetic_status = `
 const patients_per_hypertensive_and_diabetic_status = `
 	select 
 		patient.name, 
-		date(flat_cdm_summary.encounter_datetime) as 'encounter_date', 
-		location.name,
-		flat_cdm_summary.htn_status,
-		flat_cdm_summary.dm_status,
-		patient.gender,
+		date(flat_cdm_summary.encounter_datetime) as 'Encounter Date', 
+		location.name as 'Location',
+		case
+			when flat_cdm_summary.htn_status = 7285 then
+				"New"
+			else 
+				"Known"
+		end as 'Hypertension Status',
+		case
+			when flat_cdm_summary.dm_status = 7281 then 
+				"New"
+			else
+				"Known"
+		end as 'Diabetes Status',
+		if(patient.gender ="MALE","M","F") as 'Gender',
 		timestampdiff(year,patient.dob, curdate()) AS Age
 	from patient 
 	inner join flat_cdm_summary on patient.patient_id = flat_cdm_summary.patient_id
