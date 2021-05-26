@@ -1,3 +1,4 @@
+/* Retrieve cdm reports by creteria*/
 const cdm_categories_report = `
 	select 
 		concat(year(flat_cdm_summary.encounter_datetime),'-',month(flat_cdm_summary.encounter_datetime)) as Month,
